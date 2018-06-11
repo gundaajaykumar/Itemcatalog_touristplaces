@@ -1,0 +1,82 @@
+<html>
+   <head>
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='places.css') }}">
+   </head>
+   <body>
+      <div class = 'tour'>
+         <h1>{{ tourist.name }}</h1>
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+         <ul>
+            {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+            {% endfor %}
+         </ul>
+         {% endif %}
+         {% endwith %}
+         {% if looks !=[] %}
+         <a href = "{{url_for('newDestination', tourist_id = tourist.id )}}">Create New Spot</a>
+         </br></br>
+         <h2>mosque</h2>
+         {% for a in looks %}
+         {% if a.course == 'mosque' %}
+         <p>{{a.name}}</p>
+         <p>{{a.details}}</p>
+         <p>{{a.charge}}</p>
+         <a href='{{url_for('editDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Edit</a>
+         </br>
+         <a href='{{url_for('deleteDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Delete</a>
+         </br>
+         </br>
+         {% endif %}
+         {% endfor %}
+         </br></br>
+         <h2>fort</h2>
+         {% for a in looks %}
+         {% if a.course == 'fort' %}
+         <p>{{a.name}}</p>
+         <p>{{a.details}}</p>
+         <p>{{a.charge}}</p>
+         <a href='{{url_for('editDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Edit</a>
+         </br>
+         <a href='{{url_for('deleteDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Delete</a>
+         </br>
+         </br>
+         {% endif %}
+         {% endfor %}
+         </br></br>
+         <h2>seenary</h2>
+         {% for a in looks %}
+         {% if a.course == 'seenary' %}
+         <p>{{a.name}}</p>
+         <p>{{a.details}}</p>
+         <p>{{a.charge}}</p>
+         <a href='{{url_for('editDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Edit</a>
+         </br>
+         <a href='{{url_for('deleteDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Delete</a>
+         </br>
+         </br>
+         {% endif %}
+         {% endfor %}
+         </br></br>
+         <h2>piligrimage</h2>
+         {% for a in looks %}
+         {% if a.course == 'piligrimage' %}
+         <p>{{a.name}}</p>
+         <p>{{a.details}}</p>
+         <p>{{a.charge}}</p>
+         <a href='{{url_for('editDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Edit</a>
+         </br>
+         <a href='{{url_for('deleteDestination', tourist_id = tourist.id, area_id=a.id ) }}' >Delete</a>
+         </br>
+         </br>
+         {% endif %}
+         {% endfor %}
+         {% else %}
+         <p> You currently have no packages. 
+         <p>
+            <a href = "{{url_for('newDestination', tourist_id = tourist.id )}}">Create New Spot</a>
+            {% endif %}
+      </div>
+   </body>
+   </html

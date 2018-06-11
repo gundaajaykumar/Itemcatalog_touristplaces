@@ -1,0 +1,41 @@
+<html>
+   <head>
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='places.css') }}">
+   </head>
+   <body>
+      <h1> Edit Spot </h1>
+      <form action="#" method = 'post'>
+         <p>Name:</p>
+         <input type ='text' size='32' name='name' placeholder = '{{look.name }}'>
+         <p>Details:</p>
+         <input type ='text' size='32' name='details' placeholder = '{{look.details }}'>
+         <p>Price:</p>
+         <input type ='text' size='32' name='charge' placeholder = '{{look.charge }}'>
+         <p>Course:
+         <p>
+            {% if look.course == 'mosque' %}
+         <dd><input type ='checkbox' name='course' value='mosque'checked >mosque</dd>
+         {%else%}
+         <dd><input type ='checkbox' name='course' value='mosque' >mosque</dd>
+         {% endif %}
+         {% if look.course == 'fort' %}
+         <dd><input type ='checkbox' name='course' value='fort' checked>fort</dd>
+         {%else%}
+         <dd><input type ='checkbox' name='course' value='fort'>fort</dd>
+         {% endif %}
+         {% if look.course == 'seenary'%}
+         <dd><input type ='checkbox' name='course' value='seenary'checked >seenary</dd>
+         {% else %}
+         <dd><input type ='checkbox' name='course' value='seenary'>seenary</dd>
+         {% endif %}
+         {%if look.course =='piligrimage'%}
+         <dd><input type ='checkbox' name='course' value='piligrimage'checked >piligrimage</dd>
+         {% else %}
+         <dd><input type ='checkbox' name='course' value='piligrimage'>piligrimage</dd>
+         {% endif %}
+         <br><br>
+         <input type='submit' value='Edit'>
+         <a href = '#'> Cancel </a>
+      </form>
+   </body>
+</html>

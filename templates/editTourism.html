@@ -1,0 +1,14 @@
+<html>
+   <head>
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='places.css') }}">
+   </head>
+   <body>
+      <h1> Edit Tourism </h1>
+      <form action="{{ url_for('editTourism',tourist_id = tourist.id)}}" method = 'post'>
+         <p>Name:</p>
+         <input type ='text' size='32' name='name' placeholder = '{{tourist.name }}'>
+         <input type='submit' value='Edit'>
+         <a href = '{{url_for('places')}}'> Cancel </a>
+      </form>
+   </body>
+</html>
