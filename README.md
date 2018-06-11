@@ -40,3 +40,4 @@ Touristspots App for Item catalog project This is a python module that creates a
 
 * Then we open the your webbrowser with localhost:5000
 
+* After that we do all four operations "CRUD".
