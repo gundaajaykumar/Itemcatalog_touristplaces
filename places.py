@@ -100,6 +100,7 @@ spot2 = Destination(name='Chennai', details="Capital city'",
 session.add(spot2)
 session.commit()
 spot3 = Destination(name='Chidambaram',
+
                     details='Well known for Nataraja Temple',
                     charge='Rs.6500', course='piligrimage',
                     tourist=tourist3)
