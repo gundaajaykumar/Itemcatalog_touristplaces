@@ -12,9 +12,7 @@ Touristspots App for Item catalog project This is a python module that creates a
 
 * Bootstrap
 
-* FlaskThis application uses Flask,SQL Alchemy, JQuery,CSS, Javascript, and OAuth2 to create Item catalog website.
-4
-
+* Flask
 
 * SQLAchemy
 
@@ -37,8 +35,6 @@ Touristspots App for Item catalog project This is a python module that creates a
 1.db_setup.py
 
 * We get a  database(skytravels.db).
-This application uses Flask,SQL Alchemy, JQuery,CSS, Javascript, and OAuth2 to create Item catalog website.
-4
 
 2.places.py
 
