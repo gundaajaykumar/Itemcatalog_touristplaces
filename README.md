@@ -32,9 +32,7 @@ Touristspots App for Item catalog project This is a python module that creates a
 
 * Run your python files in following order:
 
-1.db_setup.py
-
-* We get a  database(skytravels.db).
+1.db_setup.py (We get a  database skytravels.db).
 
 2.places.py
 
