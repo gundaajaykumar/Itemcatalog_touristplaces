@@ -12,12 +12,6 @@ Touristspots App for Item catalog project This is a python module that creates a
 
 * Bootstrap
 
-* Flask
-
-* SQLAchemy
-
-* OAuth
-
 * Google Login
 
 ## Procedure
@@ -33,6 +27,8 @@ Touristspots App for Item catalog project This is a python module that creates a
 * Run your python files in following order:
 
 * db_setup.py (We get a  database skytravels.db).
+
+* Install the dependency libraries (Flask, sqlalchemy, requests and oauth2client) by running pip install (Flask, sqlalchemy, requests and oauth2client).
 
 * places.py.
 
