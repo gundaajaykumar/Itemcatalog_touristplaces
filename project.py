@@ -70,7 +70,7 @@ def gconnect():
 
     try:
 
-        # upgrade the authorization code in credentials object
+        ''' upgrade the authorization code in credentials object '''
 
         oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
@@ -181,9 +181,8 @@ def getUserID(email):
         return user.id
     except:
         return None
+''' DISCONNECT - Revoke a current user's token and reset their login_session'''
 
-
-# DISCONNECT - Revoke a current user's token and reset their login_session.
 
 @app.route('/gdisconnect')
 def gdisconnect():
@@ -319,7 +318,7 @@ def deleteTourism(tourist_id):
          delete this tourist.please create your own tourist to delete');}\
          </script><body onLoad = 'myFunction()'>"
     # return 'This page will be for deleting tourist %s' % tourists_id
-    # Show a tourist spot
+    ''' Show a tourist spot'''
 
 
 @app.route('/tourist/<int:tourist_id>/')
