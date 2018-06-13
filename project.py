@@ -242,8 +242,8 @@ def touristMenuJSON(tourist_id):
 
 
 @app.route('/tourist/<int:tourist_id>/area/<int:area_id>/JSON')
-def DestinationJSON(tourist_id, area_id):
-    Destination = session.query(Destination).filter_by(id=area_id).one()
+def spotJSON(tourist_id, area_id):
+    pack = session.query(Destination).filter_by(id=area_id).one()
     return jsonify(pack=pack.serialize)
 
 
@@ -275,6 +275,10 @@ def newTourism():
         return redirect(url_for('places'))
     else:
         return render_template('newTourism.html')
+    if Tourism.user_id != login_session['user_id']:
+        return "<script>function myFunction(){alert('You are not authorized to\
+        create this touristplace. please create your own touristplace in order\
+        to create.');}</script><body onload='myFunction()'>"
     # return "This page will be for making a newtourists"
     # Edit a tourist place
 
@@ -294,7 +298,7 @@ def editTourism(tourist_id):
                                tourist=editedTourism)
     if Tourism.user_id != login_session['user_id']:
         return "<script>function myFunction(){alert('You are not authorized to\
-        edit this touristplace. please create your own touristplacet in order\
+        edit this touristplace. please create your own touristplace in order\
         to edit.');}</script><body onload='myFunction()'>"
     # return 'This page will be for editing tourist %s' %tourists_id
     # Delete a tourist place
@@ -352,6 +356,10 @@ def newDestination(tourist_id):
         return render_template('newspot.html', tourist_id=tourist_id)
 
     return render_template('newDestination.html', tourist=tourist)
+    if login_session['user_id'] != Destination.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to\
+          create spots to this tourist.Please create your own tourist in\
+          order to create spots.');}</script><body onload='myFunction()'>"
     # return 'This page is for making a new spot for tourist places %s'
     # %tourist_id
     # Edit a spot
