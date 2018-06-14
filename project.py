@@ -235,7 +235,7 @@ def logout():
 
 @app.route('/tourist/<int:tourist_id>/area/JSON')
 def touristMenuJSON(tourist_id):
-    tourist = session.query(Tourism).filter_by(id=tourist_id).one()
+    tourist = session.query(Tourism).filter_by(id=tourist_id).one_or_none()
     looks = \
         session.query(Destination).filter_by(tourist_id=tourist_id).all()
     return jsonify(Destinations=[a.serialize for a in looks])
@@ -243,7 +243,7 @@ def touristMenuJSON(tourist_id):
 
 @app.route('/tourist/<int:tourist_id>/area/<int:area_id>/JSON')
 def spotJSON(tourist_id, area_id):
-    pack = session.query(Destination).filter_by(id=area_id).one()
+    pack = session.query(Destination).filter_by(id=area_id).one_or_none()
     return jsonify(pack=pack.serialize)
 
 
@@ -293,7 +293,7 @@ def editTourism(tourist_id):
         edit this touristplace. please create your own touristplace in order\
         to edit.');}</script><body onload='myFunction()'>"
     editedTourism = \
-        session.query(Tourism).filter_by(id=tourist_id).one()
+        session.query(Tourism).filter_by(id=tourist_id).one_or_none()
     if request.method == 'POST':
         if request.form['name']:
             editedTourism.name = request.form['name']
@@ -315,7 +315,7 @@ def deleteTourism(tourist_id):
          delete this tourist.please create your own tourist to delete');}\
          </script><body onLoad = 'myFunction()'>"
     touristToDelete = \
-        session.query(Tourism).filter_by(id=tourist_id).one()
+        session.query(Tourism).filter_by(id=tourist_id).one_or_none()
     if request.method == 'POST':
         session.delete(touristToDelete)
         session.commit()
@@ -333,7 +333,7 @@ def deleteTourism(tourist_id):
 def showplace(tourist_id):
     if 'username' not in login_session:
         return redirect('/login')
-    tourist = session.query(Tourism).filter_by(id=tourist_id).one()
+    tourist = session.query(Tourism).filter_by(id=tourist_id).one_or_none()
     looks = \
         session.query(Destination).filter_by(tourist_id=tourist_id).all()
     return render_template('area.html', looks=looks, tourist=tourist)
@@ -378,7 +378,7 @@ def editDestination(tourist_id, area_id):
         return "<script>function myFunction() {alert('You are not authorized to\
           edit spots to this tourist.Please create your own tourist in\
           order to edit spots.');}</script><body onload='myFunction()'>"
-    editedlook = session.query(Destination).filter_by(id=area_id).one()
+    editedlook = session.query(Destination).filter_by(id=area_id).one_or_none()
     if request.method == 'POST':
         if request.form['name']:
             editedlook.name = request.form['name']
@@ -411,7 +411,7 @@ def deleteDestination(tourist_id, area_id):
          in order to delete spots');}</script><body onload='myFunction()'>"
 
     lookToDelete = \
-        session.query(Destination).filter_by(id=area_id).one()
+        session.query(Destination).filter_by(id=area_id).one_or_none()
 
     if request.method == 'POST':
         session.delete(lookToDelete)
