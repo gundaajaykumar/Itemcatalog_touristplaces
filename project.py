@@ -268,6 +268,10 @@ def places():
 def newTourism():
     if 'username' not in login_session:
         return redirect('/login')
+    if Tourism.user_id != login_session['user_id']:
+        return "<script>function myFunction(){alert('You are not authorized to\
+        create this touristplace. please create your own touristplace in order\
+        to create.');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         newTourism = Tourism(name=request.form['name'])
         session.add(newTourism)
@@ -275,10 +279,7 @@ def newTourism():
         return redirect(url_for('places'))
     else:
         return render_template('newTourism.html')
-    if Tourism.user_id != login_session['user_id']:
-        return "<script>function myFunction(){alert('You are not authorized to\
-        create this touristplace. please create your own touristplace in order\
-        to create.');}</script><body onload='myFunction()'>"
+    
     # return "This page will be for making a newtourists"
     # Edit a tourist place
 
@@ -287,6 +288,10 @@ def newTourism():
 def editTourism(tourist_id):
     if 'username' not in login_session:
         return redirect('/login')
+    if Tourism.user_id != login_session['user_id']:
+        return "<script>function myFunction(){alert('You are not authorized to\
+        edit this touristplace. please create your own touristplace in order\
+        to edit.');}</script><body onload='myFunction()'>"
     editedTourism = \
         session.query(Tourism).filter_by(id=tourist_id).one()
     if request.method == 'POST':
@@ -296,10 +301,7 @@ def editTourism(tourist_id):
     else:
         return render_template('editTourism.html',
                                tourist=editedTourism)
-    if Tourism.user_id != login_session['user_id']:
-        return "<script>function myFunction(){alert('You are not authorized to\
-        edit this touristplace. please create your own touristplace in order\
-        to edit.');}</script><body onload='myFunction()'>"
+    
     # return 'This page will be for editing tourist %s' %tourists_id
     # Delete a tourist place
 
@@ -308,6 +310,10 @@ def editTourism(tourist_id):
 def deleteTourism(tourist_id):
     if 'username' not in login_session:
         return redirect('/login')
+    if Tourism.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('you are not authorized to\
+         delete this tourist.please create your own tourist to delete');}\
+         </script><body onLoad = 'myFunction()'>"
     touristToDelete = \
         session.query(Tourism).filter_by(id=tourist_id).one()
     if request.method == 'POST':
@@ -317,10 +323,7 @@ def deleteTourism(tourist_id):
     else:
         return render_template('deleteTourism.html',
                                tourist=touristToDelete)
-    if Tourism.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('you are not authorized to\
-         delete this tourist.please create your own tourist to delete');}\
-         </script><body onLoad = 'myFunction()'>"
+    
     # return 'This page will be for deleting tourist %s' % tourists_id
     ''' Show a tourist spot'''
 
@@ -342,6 +345,10 @@ def showplace(tourist_id):
 def newDestination(tourist_id):
     if 'username' not in login_session:
         return redirect('/login')
+    if login_session['user_id'] != Destination.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to\
+          create spots to this tourist.Please create your own tourist in\
+          order to create spots.');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         newlook = Destination(name=request.form['name'],
                               details=request.form['details'],
@@ -356,10 +363,7 @@ def newDestination(tourist_id):
         return render_template('newspot.html', tourist_id=tourist_id)
 
     return render_template('newDestination.html', tourist=tourist)
-    if login_session['user_id'] != Destination.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to\
-          create spots to this tourist.Please create your own tourist in\
-          order to create spots.');}</script><body onload='myFunction()'>"
+    
     # return 'This page is for making a new spot for tourist places %s'
     # %tourist_id
     # Edit a spot
@@ -370,6 +374,10 @@ def newDestination(tourist_id):
 def editDestination(tourist_id, area_id):
     if 'username' not in login_session:
         return redirect('/login')
+    if login_session['user_id'] != Destination.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to\
+          edit spots to this tourist.Please create your own tourist in\
+          order to edit spots.');}</script><body onload='myFunction()'>"
     editedlook = session.query(Destination).filter_by(id=area_id).one()
     if request.method == 'POST':
         if request.form['name']:
@@ -387,10 +395,7 @@ def editDestination(tourist_id, area_id):
 
         return render_template('editspot.html', tourist_id=tourist_id,
                                area_id=area_id, look=editedlook)
-    if login_session['user_id'] != Destination.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to\
-          edit spots to this tourist.Please create your own tourist in\
-          order to edit spots.');}</script><body onload='myFunction()'>"
+    
         # return 'This page is for editing spot %s' % area_id
         # Delete a spot
 
@@ -400,6 +405,11 @@ def editDestination(tourist_id, area_id):
 def deleteDestination(tourist_id, area_id):
     if 'username' not in login_session:
         return redirect('/login')
+    if login_session['user_id'] != Destination.user_id:
+        return "<script>function myFunction() {alert ('you are not authorized to\
+         delete spots to this tourist.please create your own tourist\
+         in order to delete spots');}</script><body onload='myFunction()'>"
+
     lookToDelete = \
         session.query(Destination).filter_by(id=area_id).one()
 
@@ -410,11 +420,7 @@ def deleteDestination(tourist_id, area_id):
     else:
         return render_template('deleteDestination.html',
                                look=lookToDelete)
-    if login_session['user_id'] != Destination.user_id:
-        return "<script>function myFunction() {alert ('you are not authorized to\
-         delete spots to this tourist.please create your own tourist\
-         in order to delete spots');}</script><body onload='myFunction()'>"
-
+    
     # return "This page is for deleting spot %s" %area_id
 
 if __name__ == '__main__':
